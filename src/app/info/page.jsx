@@ -1,10 +1,11 @@
 import Image from "next/image"
+import { asset } from "../lib/asset";
 
 const info = () => {
     return(
         <div className="info">
             <div className="col">
-                <img src="/img/rpbk_hz.webp" alt="profile pic" />
+                <img src={asset("/img/rpbk_hz.webp")} alt="profile pic" />
             </div>
             <div className="col">
                 <p>

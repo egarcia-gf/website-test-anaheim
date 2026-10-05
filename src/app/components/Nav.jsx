@@ -2,6 +2,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { asset } from "../lib/asset";
 
 const Nav = () =>{
     const [open, setOpen] = useState(false)
@@ -11,7 +12,7 @@ const Nav = () =>{
             <div className="logo">
                 <div className="link">
                     <Link href="/">
-                        <Image src="/img/Anaheim_Logo_white.svg" alt="Anaheim logo" width={120} height={40}/>
+                        <Image src={asset("/img/Anaheim_Logo_white.svg")} alt="Anaheim logo" width={120} height={40}/>
                     </Link>
                 </div>
             </div>
