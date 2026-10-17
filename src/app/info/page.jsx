@@ -1,8 +1,12 @@
+"use client";
+import ReactLenis from "lenis/react";
+
 import Image from "next/image"
 import { asset } from "../lib/asset";
 
 const info = () => {
     return(
+        <ReactLenis root>
         <div className="info">
             <div className="col">
                 <img src={asset("/img/rpbk_hz.webp")} alt="profile pic" />
@@ -13,6 +17,7 @@ const info = () => {
                 </p>
             </div>
         </div>
+        </ReactLenis>
     )
 }
 

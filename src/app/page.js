@@ -1,8 +1,12 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import ReactLenis from "lenis/react";
 
 export default function Home() {
-  return <div className="home">
+  return ( 
+  <ReactLenis root>
+    <div className="home">
     <h1>Anaheim</h1>
-  </div>;
+    </div>
+  </ReactLenis> 
+  );
 }
