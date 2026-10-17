@@ -212,6 +212,24 @@ a {
         padding: 1em;
     }
 
+    .info {
+        flex-direction: column;
+        padding-top: 5em;
+    }
+
+    .col:nth-child(1) {
+        aspect-ratio: 4/3;
+        flex: none;
+    }
+
+    .col:nth-child(2) {
+        padding: 1.5em 1em 2.5em;
+    }
+
+    .col p {
+        font-size: 1.1rem;
+    }
+
     .logo img {
         width: 90px;
     }
