@@ -5,12 +5,16 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { asset } from "../lib/asset";
+import { usePathname } from "next/navigation";
+
 
 
 const Nav = () =>{
 
     const router = useTransitionRouter();
     const [open, setOpen] = useState(false)
+    const pathname = usePathname();
+
 
     const slideInOut = () => {
         const opts = { duration: 1000, easing: "ease-in-out", fill: "forwards" };
@@ -24,11 +28,15 @@ const Nav = () =>{
         );
     };
 
+    const clean = (p) => p.replace(/\/$/, "") || "/";
+
     const go = (e, href) => {
         e.preventDefault();
         setOpen(false);
+        if (clean(pathname) === clean(href)) return; // ya estás aquí: sin animación
         router.push(href, { onTransitionReady: slideInOut });
     };
+
 
     return(
         <nav className="nav">

@@ -33,9 +33,9 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--bg);
     z-index: 10;
 }
+
 
 .logo img {
     width: 120px;
@@ -82,6 +82,8 @@ a {
     justify-content: center;
     align-items: center;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .home h1 {
@@ -97,12 +99,33 @@ a {
     letter-spacing: -0.5rem;
     line-height: 1;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    z-index: 1;
 }
 
 .home h1 .char {
     position: relative;
     will-change: transform;
 }
+
+/* Funciones para ajustar fondo de video */
+
+.home-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*Oscurecer video*/
+
+.home::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+}
+
 
 .projects {
     width: 100vw;
