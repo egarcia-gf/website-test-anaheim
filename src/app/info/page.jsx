@@ -1,13 +1,57 @@
 "use client";
 import ReactLenis from "lenis/react";
 
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import SplitType from "split-type";
+
 import Image from "next/image"
 import { asset } from "../lib/asset";
+import { useRef } from "react";
 
-const info = () => {
+gsap.registerPlugin(useGSAP);
+
+const Info = () => {
+
+    const container = useRef();
+    
+    useGSAP(
+        () => {
+            const text = new SplitType(".info p", {
+                types: "lines",
+                tagName: "div",
+                lineClass: "line",
+            });
+
+            text.lines.forEach((line) => {
+                
+                const content = line.innerHTML;
+                line.innerHTML = `<span>${content}</span>`;
+            });
+
+            gsap.set (".info p .line span", {
+                y:400,
+                display: "block",
+            });
+
+            gsap.to(".info p .line span",{
+                y:0,
+                duration: 2,
+                stagger: 0.075,
+                ease: "power4.out",
+                delay: 0.25
+            });
+
+            return () => {
+                if (text) text.revert();
+            };
+        },
+        {scope: container}
+    )
+
     return(
         <ReactLenis root>
-        <div className="info">
+        <div className="info" ref={container}>
             <div className="col">
                 <img src={asset("/img/rpbk_hz.webp")} alt="profile pic" />
             </div>
@@ -21,4 +65,4 @@ const info = () => {
     )
 }
 
-export default info
+export default Info

@@ -1,7 +1,7 @@
 "use client";
 
 import{useTransitionRouter} from "next-view-transitions";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { asset } from "../lib/asset";
@@ -14,6 +14,10 @@ const Nav = () =>{
     const router = useTransitionRouter();
     const [open, setOpen] = useState(false)
     const pathname = usePathname();
+
+    useEffect(() => {
+        console.log("¡Hola! Bienvenido a Anaheim Studio");
+    }, []);
 
 
     const slideInOut = () => {

@@ -126,6 +126,26 @@ a {
     background: rgba(0,0,0,0.4);
 }
 
+.intro {
+    width: 100vw;
+    height: 100svh;
+    background-color: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.intro h3 {
+    text-transform: lowercase;
+    color: var(--copy);
+    font-size: 2vw;
+    font-weight: lighter;
+
+}
+
+/* ======== PROJECTS======= */
 
 .projects {
     width: 100vw;
@@ -162,6 +182,8 @@ a {
 .img-wrap:hover img {
     transform: scale(1.15);
 }
+
+/* ========== INFO ========== */
 
 .info {
 
