@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SplitType from "split-type";
@@ -10,6 +10,7 @@ gsap.registerPlugin(useGSAP);
 
 export default function Home() {
   const container = useRef();
+  const [clicks, setClicks] = useState(0);
 
   useGSAP(
     () => {
@@ -45,6 +46,11 @@ export default function Home() {
 
     <section className="intro">
       <h3>We're more than a design studio based in Mexico city and California</h3>
+    </section>
+
+    <section className="counter">
+      <h2>{clicks}</h2>
+      <button onClick={() => setClicks(clicks + 1)}>Hacer clic</button>
     </section>
   </ReactLenis> 
   );

@@ -335,3 +335,27 @@ a {
     z-index: 1;
     animation: none !important
 }
+/* ======== COUNTER ======= */
+
+.counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding: 4em 0;
+}
+
+.counter h2 {
+    font-size: 4vw;
+}
+
+.counter button {
+    background: var(--copy);
+    color: var(--bg);
+    border: none;
+    border-radius: 2em;
+    padding: 0.8em 2em;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
