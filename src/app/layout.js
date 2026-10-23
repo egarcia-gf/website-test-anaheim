@@ -3,6 +3,7 @@ import "./globals.css";
 import { ViewTransition } from "next-view-transitions";
 
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 import { ViewTransitions } from "next-view-transitions";
 
 const regrade = localFont({
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
       <body>
         <Nav />
         {children}
+        <Footer />
       </body>
     </html>
     </ViewTransitions>

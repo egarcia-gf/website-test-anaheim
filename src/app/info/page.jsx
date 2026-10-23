@@ -17,32 +17,49 @@ const Info = () => {
     
     useGSAP(
         () => {
-            const text = new SplitType(".info p", {
-                types: "lines",
-                tagName: "div",
-                lineClass: "line",
-            });
+            let text;
 
-            text.lines.forEach((line) => {
-                
-                const content = line.innerHTML;
-                line.innerHTML = `<span>${content}</span>`;
-            });
+            const split = (animate) => {
+                if (text) text.revert();
+                text = new SplitType(".info p", {
+                    types: "lines",
+                    tagName: "div",
+                    lineClass: "line",
+                });
 
-            gsap.set (".info p .line span", {
-                y:400,
-                display: "block",
-            });
+                text.lines.forEach((line) => {
+                    line.innerHTML = `<span>${line.innerHTML}</span>`;
+                });
 
-            gsap.to(".info p .line span",{
-                y:0,
-                duration: 2,
-                stagger: 0.075,
-                ease: "power4.out",
-                delay: 0.25
-            });
+                gsap.set(".info p .line span", {
+                    y: animate ? 400 : 0,
+                    display: "block",
+                });
+
+                if (animate) {
+                    gsap.to(".info p .line span", {
+                        y: 0,
+                        duration: 2,
+                        stagger: 0.075,
+                        ease: "power4.out",
+                        delay: 0.25,
+                    });
+                }
+            };
+
+            let cancelled = false;
+            let timer;
+            document.fonts.ready.then(() => !cancelled && split(true));
+            const onResize = () => {
+                clearTimeout(timer);
+                timer = setTimeout(() => split(false), 200);
+            };
+            window.addEventListener("resize", onResize);
 
             return () => {
+                cancelled = true;
+                clearTimeout(timer);
+                window.removeEventListener("resize", onResize);
                 if (text) text.revert();
             };
         },
@@ -58,6 +75,9 @@ const Info = () => {
             <div className="col">
                 <p>
                     So this is Anaheim Studio. Honestly it's design, but I don't stick to one thing: logos, artist artwork, websites, 3D animation. If your project needs a brand and that brand also needs to move on screen, I handle both, because for me it's less about hitting a checklist and more about making sure people actually notice it. If someone looks at your logo or your site and thinks "I've seen this before," I screwed up. So no templates, no shortcuts, just enough obsessing over the details that you can feel there was an actual decision behind every piece.
+                </p>
+                <p className="mt-6">
+                    Edwin García - Founder of Anaheim Std.
                 </p>
             </div>
         </div>

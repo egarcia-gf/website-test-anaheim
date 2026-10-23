@@ -1,16 +1,19 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef } from "react";
+// import { useState } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import SplitType from "split-type";
 import ReactLenis from "lenis/react";
 import { asset } from "./lib/asset";
+import Spotlight from "./components/Spotlight";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Home() {
   const container = useRef();
-  const [clicks, setClicks] = useState(0);
+  // const [clicks, setClicks] = useState(0);
 
   useGSAP(
     () => {
@@ -24,7 +27,19 @@ export default function Home() {
         stagger: 0.075,
         ease: "power4.out",
         delay: 1,
-      })
+      });
+
+      gsap.to(".home h1", {
+        opacity: 0,
+        filter: "blur(24px)",
+        ease: "none",
+        scrollTrigger: {
+          trigger: container.current,
+          start: "top top",
+          end: "bottom 40%",
+          scrub: true,
+        },
+      });
     },
     
     {scope: container}
@@ -44,14 +59,14 @@ export default function Home() {
       <h1>anaheim</h1>
     </div>
 
-    <section className="intro">
+    <Spotlight>
       <h3>We're more than a design studio based in Mexico city and California</h3>
-    </section>
+    </Spotlight>
 
-    <section className="counter">
+    {/* <section className="counter">
       <h2>{clicks}</h2>
       <button onClick={() => setClicks(clicks + 1)}>Hacer clic</button>
-    </section>
+    </section> */}
   </ReactLenis> 
   );
 }
