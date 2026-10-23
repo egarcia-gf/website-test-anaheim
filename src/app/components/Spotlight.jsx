@@ -39,9 +39,10 @@ export default function Spotlight({ children }) {
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const imgs = gsap.utils.toArray(".spotlight-img", root.current);
       const transitions = imgs.length - 1;
+      const height = root.current.offsetHeight;
 
-      const cols = Math.ceil(window.innerWidth / CELL);
-      const rows = Math.ceil(window.innerHeight / CELL);
+      const cols = Math.ceil(root.current.offsetWidth / CELL);
+      const rows = Math.ceil(height / CELL);
       const cells = [];
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
@@ -99,8 +100,8 @@ export default function Spotlight({ children }) {
           stagger: 0.4,
           scrollTrigger: {
             trigger: root.current,
-            start: `top+=${window.innerHeight * 0.3} top`,
-            end: `+=${transitions * window.innerHeight * 0.7}`,
+            start: `top+=${height * 0.3} top`,
+            end: `+=${transitions * height * 0.7}`,
             scrub: true,
           },
         },
@@ -109,7 +110,7 @@ export default function Spotlight({ children }) {
       ScrollTrigger.create({
         trigger: root.current,
         start: "top top",
-        end: `+=${transitions * window.innerHeight}`,
+        end: `+=${transitions * height}`,
         pin: true,
         scrub: true,
         onUpdate: ({ progress }) => {
@@ -135,7 +136,7 @@ export default function Spotlight({ children }) {
   );
 
   return (
-    <section ref={root} className="relative w-full h-svh overflow-hidden">
+    <section ref={root} className="relative w-full h-lvh overflow-hidden">
       {images.map((n, i) => (
         <div
           key={n}
